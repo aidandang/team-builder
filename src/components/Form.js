@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Form(props) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [role, setRole] = useState('');
+
   return (
     <div className="Form">
       <h1>Add Member</h1>
-      <form>
+      <form onSubmit={e => {
+        e.preventDefault();
+        props.addmember(name, email, role)
+      }}>
         <table>
           <tr>
             <td>
               <label htmlFor="nameInput">Name:</label>
             </td>
             <td>
-              <input type="text" id="nameInput" />
+              <input 
+                type="text" 
+                id="nameInput" 
+                onChange={e => {
+                  setName(e.target.value)
+                }} 
+              />
             </td>
           </tr>
           <tr>
@@ -19,7 +32,13 @@ export default function Form(props) {
               <label htmlFor="emailInput">Email:</label>
             </td>
             <td>
-              <input type="text" id="emailInput" />
+              <input 
+                type="text" 
+                id="emailInput"
+                onChange={e => {
+                  setEmail(e.target.value)
+                }} 
+              />
             </td>
           </tr>
           <tr>
@@ -27,17 +46,23 @@ export default function Form(props) {
               <label htmlFor="roleSelect">Role:</label>
             </td>
             <td>
-              <select id="roleSelect">
-                <option value="1">UI</option>
-                <option value="2">UX</option>
-                <option value="3">Frontend</option>
-                <option value="4">Backend</option>
-                <option value="5">TL</option>
+              <select 
+                id="roleSelect" 
+                onChange={e => {
+                  setRole(e.target.value)
+                }}
+              >
+                <option value="" selected disabled hidden>Choose here</option>
+                <option value="UI">UI</option>
+                <option value="UX">UX</option>
+                <option value="Frontend">Frontend</option>
+                <option value="Backend">Backend</option>
+                <option value="TL">TL</option>
               </select>
             </td>
           </tr>
         </table>
-        <input type="submit" />
+        <button>Add Member</button>
       </form>
     </div> 
   )

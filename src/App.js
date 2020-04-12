@@ -7,14 +7,15 @@ import { teamMembers } from './data/teamMembers';
 function App() {
   const [members, setMember] = useState(teamMembers);
 
-  const addMember = (member) => {
+  const addMember = (name, email, role) => {
+    const member = {name, email, role};
     setMember([...members, member]);
   }
 
   return (
     <div className="App">
       <MemberList members={members} />
-      <Form members={members} addmember={addMember} />
+      <Form  addmember={addMember} />
     </div>
   );
 }
