@@ -1,56 +1,59 @@
 import React, { useState } from 'react';
 
 export default function Form(props) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [role, setRole] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    role: ''
+  })
+
+  const onInputChange = event => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    })
+  }
 
   return (
     <div className="Form">
       <h1>Add Member</h1>
-      <form onSubmit={e => {
-        e.preventDefault();
-        props.addmember(name, email, role)
+      <form onSubmit={event => {
+        event.preventDefault();
+        props.addmember(formData)
       }}>
         <table>
           <tr>
             <td>
-              <label htmlFor="nameInput">Name:</label>
+              <label htmlFor="name">Name:</label>
             </td>
             <td>
               <input 
                 type="text" 
-                id="nameInput" 
-                onChange={e => {
-                  setName(e.target.value)
-                }} 
+                name="name" 
+                onChange={onInputChange} 
               />
             </td>
           </tr>
           <tr>
             <td>
-              <label htmlFor="emailInput">Email:</label>
+              <label htmlFor="email">Email:</label>
             </td>
             <td>
               <input 
                 type="text" 
-                id="emailInput"
-                onChange={e => {
-                  setEmail(e.target.value)
-                }} 
+                name="email"
+                onChange={onInputChange} 
               />
             </td>
           </tr>
           <tr>
             <td>
-              <label htmlFor="roleSelect">Role:</label>
+              <label htmlFor="role">Role:</label>
             </td>
             <td>
               <select 
-                id="roleSelect" 
-                onChange={e => {
-                  setRole(e.target.value)
-                }}
+                name="role" 
+                onChange={onInputChange}
               >
                 <option value="" selected disabled hidden>Choose here</option>
                 <option value="UI">UI</option>
