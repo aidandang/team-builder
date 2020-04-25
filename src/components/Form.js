@@ -7,6 +7,11 @@ export default function Form(props) {
     role: ''
   })
 
+  const onSubmit = event => {
+    event.preventDefault();
+    props.addmember(formData);
+  }
+
   const onInputChange = event => {
     setFormData({
       ...formData,
@@ -17,10 +22,7 @@ export default function Form(props) {
   return (
     <div className="Form">
       <h1>Add Member</h1>
-      <form onSubmit={event => {
-        event.preventDefault();
-        props.addmember(formData)
-      }}>
+      <form onSubmit={onSubmit}>
         <table>
           <tr>
             <td>
@@ -29,8 +31,8 @@ export default function Form(props) {
             <td>
               <input 
                 type="text" 
-                name="name" 
-                onChange={onInputChange} 
+                name="name"
+                onChange={onInputChange}
               />
             </td>
           </tr>
@@ -42,7 +44,7 @@ export default function Form(props) {
               <input 
                 type="text" 
                 name="email"
-                onChange={onInputChange} 
+                onChange={onInputChange}
               />
             </td>
           </tr>

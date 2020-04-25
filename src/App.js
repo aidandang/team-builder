@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <MemberList members={members} />
-      <Form  addmember={addMember} />
+      <Form  addmember={addMember} name="" email="" role="" />
     </div>
   );
 }
