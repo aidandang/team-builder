@@ -1,0 +1,15 @@
+table {
+  border-collapse: collapse;
+}
+
+table, .list-column {
+  border: 1px solid black;
+}
+
+th, td {
+  text-align: left;
+}
+
+.App {
+  margin-left: 5%;
+}
